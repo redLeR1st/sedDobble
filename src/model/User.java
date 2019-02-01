@@ -28,6 +28,10 @@ public class User {
 	}
 	
 	public Card dropCard() {
+		if (hand.size() == 0) {
+			return null;
+		}
+		
 		Card ret = hand.get(hand.size() - 1);
 		hand.remove(ret);
 		return ret;

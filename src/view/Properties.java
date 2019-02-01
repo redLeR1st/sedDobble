@@ -22,6 +22,7 @@ public class Properties extends Application {
 	private static String gameMode = Constants.DEFAULT_GAME_MODE;
 	private final OcrController controller = application.Main.controller;
 	private static Stage stage;
+	public static boolean refresh = false;
 	
 	private static List<String> userNames;
 	
@@ -65,6 +66,7 @@ public class Properties extends Application {
 		}
 		
 		stage.close();
+		refresh = true;
 	}
 	
 	public void enablePlayer1(ActionEvent event) {
@@ -101,6 +103,7 @@ public class Properties extends Application {
 		userNames.add("");
 		userNames.add("");
 		stage.close();
+		refresh = false;
 	}
 
 

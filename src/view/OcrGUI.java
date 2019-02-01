@@ -8,20 +8,14 @@ import java.util.List;
 import controller.OcrController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Card;
 import model.Constants;
@@ -71,6 +65,11 @@ public class OcrGUI extends Application {
 			
 			System.out.println(user.getUserName());
 			
+			if (Properties.refresh) {
+				user.setName(Properties.getUserName(i));
+			}
+
+			
 			Label label = (Label) primaryStage.getScene().lookup("#user_" + i);
 			
 			
@@ -91,11 +90,7 @@ public class OcrGUI extends Application {
 		updateCard("#main_", mainCard, 0);
 		
 		currentPlayer = 0;
-		
-		while (endGame()) {
-			
-			nextRound(Properties.getNumberOfPlayers());
-		}
+
 	}
 	
 	private boolean endGame() {
@@ -125,20 +120,30 @@ public class OcrGUI extends Application {
 		
 		if (controller.getMainCard().match(Integer.parseInt(btn.getText()))) {
 			Card card = user.dropCard();
-			controller.setMid(card);
-			System.out.println("MATCH");
 			
-			Card nextCard = user.getNextCard();
-			
-			if (nextCard != null) {
-				updateCard("#symbol_", nextCard, userIndex);
+			if (card != null) {
+				controller.setMid(card);
+				System.out.println("MATCH");
+				
+				Card nextCard = user.getNextCard();
+				if (nextCard != null) {
+					updateCard("#symbol_", nextCard, userIndex);
+				}
+			} else {
+				System.out.println("Time exceeded: " + controller.endTime());
 			}
+			
+			
+			
 			
 			updateCard("#main_", card, 0);
 			
 		} else {
-			
-			//System.out.println(controller.getMainCard() + " " + index);
+			user.punish();
+		}
+		
+		if (Properties.refresh) {
+			restartGame(stage);
 		}
 		
 	}
@@ -146,8 +151,15 @@ public class OcrGUI extends Application {
 	private void updateCard(String symbol, Card card, int userIndex) {
 		for (int i = 0; i < Constants.NUMBER_OF_CARDS; ++i) {
 			Button button = (Button) stage.getScene().lookup(symbol + userIndex + i);
+
 			button.setVisible(true);
-			button.setText(String.valueOf(card.getSymbolByIndex(i)));
+			int number = card.getSymbolByIndex(i);
+			button.setText(String.valueOf(number));
+			button.setGraphic(null);
+			
+			if (number == 0) {
+				button.setGraphic(new ImageView(new Image(new File("src/view/img/sedcup2019logo_cup_only.png").toURI().toString(), 20, 20, false, false)));
+			}
 		}
 	}
 

@@ -45,7 +45,7 @@ public class OcrController {
 		return null;
 	}
 
-	String endTime() {
+	public String endTime() {
 		long end = System.nanoTime();
 		
 		long elapsed = end-startTime;
