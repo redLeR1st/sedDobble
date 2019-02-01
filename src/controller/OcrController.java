@@ -23,7 +23,7 @@ public class OcrController {
 
 	public Card getMainCard() {
 		Card ret = midHand.get(midHand.size()-1);
-		midHand.remove(midHand.size()-1);
+		//midHand.remove(midHand.size()-1);
 		
 		return ret;
 		
