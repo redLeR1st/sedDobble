@@ -69,7 +69,7 @@ public class OcrGUI extends Application {
 	
 	
 	@Override
-    public void start(Stage primaryStage) {
+    public void start(final Stage primaryStage) {
 		primaryStage.setTitle("DUMB OCR");
 		stage = primaryStage;
         Parent root = null;
@@ -89,7 +89,6 @@ public class OcrGUI extends Application {
 	        
 	        loadFile.setOnAction(
 				new EventHandler<ActionEvent>() {
-				    @Override
 				    public void handle(final ActionEvent e) {
 				    	configureFileChooser(fileChooser);
 				        imageFile = fileChooser.showOpenDialog(primaryStage);
@@ -148,7 +147,6 @@ public class OcrGUI extends Application {
     			color = paragraphColor.getValue();
     		}
     		
-    		processedImage = controller.getProcessedPicture(mode, color.toString(), treshold.getValue(), rotateCheckBox.isSelected());
     		
     		if (processedImage == null) {
     			constructWarning("futtatás");
@@ -167,7 +165,7 @@ public class OcrGUI extends Application {
 	public void loadFullScreen() {
     	try {
     		if (desktop != null && processedImage != null) {
-    			desktop.open(new File(processedImage.impl_getUrl().substring(5)));
+    			
     		} else {
     			throw new IOException("");
     		}
@@ -205,7 +203,7 @@ public class OcrGUI extends Application {
     	alert.setTitle("Információ");
     	alert.setHeaderText("Az alkalmazást készítették: Barta Bence, Csuvik Viktor, Mészáros Jenő");
     	alert.setContentText("Képfeldolgozás haladóknak");
-    	alert.showAndWait();
+    	
     }
     
     public void enableCharacter() {
@@ -249,7 +247,7 @@ public class OcrGUI extends Application {
 		alert.setTitle("Hiba");
 		alert.setHeaderText("A " + errorRoot + " be kell tölteni egy képet!");
 		alert.setContentText("A \"Kép betöltése\" gombra kattintva és egy képet kiválasztva lehet képet betölteni.");
-		alert.showAndWait();
+
     }
     
    public void constructWarning(String errorRoot) {
@@ -257,7 +255,7 @@ public class OcrGUI extends Application {
 		alert.setTitle("Hiba");
 		alert.setHeaderText("Nem sikerült a " + errorRoot + ".");
 		alert.setContentText("Próbálja újra.");
-		alert.showAndWait();
+
    }
     
 	public ColorPicker getCharacterColor() {

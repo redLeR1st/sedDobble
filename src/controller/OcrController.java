@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 
-import engine.Engine;
-import javafx.scene.image.Image;
 import view.OcrGUI;
 
 public class OcrController {	
