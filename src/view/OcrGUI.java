@@ -3,8 +3,7 @@ package view;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-
-import com.sun.tools.javac.util.List;
+import java.util.List;
 
 import controller.OcrController;
 import javafx.application.Application;
@@ -26,6 +25,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Card;
 import model.Constants;
+import model.User;
 
 public class OcrGUI extends Application {
 	
@@ -97,7 +97,7 @@ private List<User> users;
 				
 				for (int j = 0; j < Constants.NUMBER_OF_CARDS; ++j) {
 					Button button = (Button) primaryStage.getScene().lookup("#symbol_" + i + j);
-					button.setText(user.getNextCard().getSysmbolByIndex(j));
+					button.setText(String.valueOf(user.getNextCard().getSymbolByIndex(j)));
 				}
 				
 				GridPane pane = (GridPane) primaryStage.getScene().lookup("#user_" + i + "_layout");
@@ -107,7 +107,7 @@ private List<User> users;
 			}
 			currentPlayer = 0;
 			
-			while (controller.endGame()) {
+			while (endGame()) {
 				
 				nextRound(Properties.getNumberOfPlayers());
 			}
@@ -145,13 +145,17 @@ private List<User> users;
 		}
     }
     
+	private boolean endGame() {
+		return false;
+		
+	}
 	
 	public void match(ActionEvent event) {
 		Button btn = (Button) event.getSource();
 		String id = btn.getId().replace("symbol_", "");
 		
 		
-		User user = users[id.charAt(0)];
+		User user = users.get(id.charAt(0));
 		
 		if (controller.getMainCard().match(Character.getNumericValue(id.charAt(1)))) {
 			Card card = user.dropCard();
@@ -164,7 +168,7 @@ private List<User> users;
 	}
 	
 
-	public void nextRound() {
+	public void nextRound(int j) {
 		currentPlayer = currentPlayer + 1 % Properties.getNumberOfPlayers();
 		
 		for (int i = 0; i < Properties.getNumberOfPlayers(); ++i) {

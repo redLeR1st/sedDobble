@@ -32,6 +32,8 @@ public class Properties extends Application {
 		if (root != null) {
 			stage.setScene(new Scene(root));
 			
+			
+			
 			stage.show();
 	        
 		} else {

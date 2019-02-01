@@ -1,5 +1,6 @@
 package model;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Deck {
 	int n = 8;
@@ -77,7 +78,7 @@ raw = new int[]
 		}
 	}
 	
-	List<Card> deal(int num) {
+	public List<Card> deal(int num) {
 		List<Card> dealtIt = new ArrayList<Card>();
 		
 		for (){

@@ -1,10 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Card {
-	List<int> symbols;
+	List<Integer> symbols;
 	
 	Card() {
-		symbols = new ArrayList<int>;
+		symbols = new ArrayList<Integer>();
 	}
 	
 	void addSymb(int sim) {
@@ -12,19 +15,19 @@ public class Card {
 	}
 	
 	
-	boolean match(int i){
+	public boolean match(int i){
 		if (this.symbols.contains(i)) {
 			return true;
 		}
-		else false;	
+		else {return false;}	
 	}
 	
-	List<int> getSymbols() {
+	public List<Integer> getSymbols() {
 		return symbols;
 	}
 	
-	int getSymbolByIndex(int i) {
-		symbols.get(i);
+	public int getSymbolByIndex(int i) {
+		return symbols.get(i);
 	}
 	
 	boolean equals(Card c) {

@@ -1,7 +1,11 @@
 package controller;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import model.Card;
+import model.Deck;
+import model.User;
 import view.OcrGUI;
 
 public class OcrController {	
@@ -17,7 +21,7 @@ public class OcrController {
 
 	}
 
-	Card getMainCard {
+	public Card getMainCard() {
 		Card ret = midHand.get(midHand.size()-1);
 		midHand.remove(midHand.size()-1);
 		
@@ -33,7 +37,7 @@ public class OcrController {
 	boolean endGame() {
 	}
 	
-	void setMid(Card setIt) {
+	public void setMid(Card setIt) {
 		midHand.add(setIt);
 	}
 	
@@ -44,14 +48,14 @@ public class OcrController {
 
 	
 	//jatekosok listáját adja vissza 
-	List<User> startGame(int n) {
-		mindHand = new ArrayList<Card>();
+	public List<User> startGame(int n) {
+		midHand = new ArrayList<Card>();
 		Card toMid = d.deal(0).get(0);
 		setMid(toMid);
 		List<User> users = new ArrayList<User>();
 		
 		for (int i = 0; i < n; i++) {
-			user = new User();
+			User user = new User();
 			user.setHand(d.deal(10));
 			users.add(user);
 		}	

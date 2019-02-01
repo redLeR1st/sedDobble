@@ -1,10 +1,12 @@
 package model;
 
+import java.util.List;
+
 public class User {
 	String name = "";
 	List<Card> hand;
 	
-	public String getUsername() {
+	public String getUserName() {
 		return name;
 	}
 	
@@ -12,21 +14,21 @@ public class User {
 		name = un;
 	}
 	
-	User() {
+	public User() {
 		name = "peldaBela";
 	}
 	
-	Card getNextCard() {
+	public Card getNextCard() {
 		return hand.get(hand.size() - 1);
 	}
 	
 	//TODO: WARNING!
-	void setHand(List<Card> hand) {
+	public void setHand(List<Card> hand) {
 		this.hand = hand;
 	}
 	
-	Card dropCard() {
-		Card ret hand.get(hand.size() - 1);
+	public Card dropCard() {
+		Card ret = hand.get(hand.size() - 1);
 		hand.remove(ret);
 		return ret;
 	}
