@@ -49,52 +49,7 @@ public class OcrGUI extends Application {
 		if(root != null) {
 			primaryStage.setScene(new Scene(root));
 	        
-			users = controller.startGame(Properties.getNumberOfPlayers());
-			Card mainCard = controller.getMainCard();
-			
-			int i = 0;
-			for (User user : users) {
-				
-				Label label = (Label) primaryStage.getScene().lookup("#user_" + i);
-				
-				
-				label.setText(user.getUserName());
-				label.setVisible(true);
-				
-				for (int j = 0; j < Constants.NUMBER_OF_CARDS; ++j) {
-					
-					
-					Button button = (Button) primaryStage.getScene().lookup("#symbol_" + i + j);
-					
-					if (button == null) {
-						System.out.println("#symbol_" + i + j);
-					}
-					
-					button.setText(String.valueOf(user.getNextCard().getSymbolByIndex(j)));
-					button.setVisible(true);
-					
-				}
-				
-				GridPane pane = (GridPane) primaryStage.getScene().lookup("#user_" + i + "_layout");
-				
-				System.out.println("#user_" + i + "_layout");
-				
-				pane.setVisible(true);
-				
-				++i;
-			}
-			for (int j = 0; j < Constants.NUMBER_OF_CARDS; ++j) {
-				Button button = (Button) primaryStage.getScene().lookup("#main_" + 0 + j);
-				
-				button.setText(String.valueOf(mainCard.getSymbolByIndex(j)));
-			}
-			
-			currentPlayer = 0;
-			
-			while (endGame()) {
-				
-				nextRound(Properties.getNumberOfPlayers());
-			}
+			restartGame(primaryStage);
 
 	        primaryStage.show();
 	        
@@ -103,6 +58,46 @@ public class OcrGUI extends Application {
 		}
     }
     
+	private void restartGame(Stage primaryStage) {
+		
+		System.out.println("START GAME");
+		System.out.println("Number of players: " + Properties.getNumberOfPlayers());
+		
+		users = controller.startGame(1);
+		Card mainCard = controller.getMainCard();
+		
+		int i = 0;
+		for (User user : users) {
+			
+			System.out.println(user.getUserName());
+			
+			Label label = (Label) primaryStage.getScene().lookup("#user_" + i);
+			
+			
+			label.setText(user.getUserName());
+			label.setVisible(true);
+			
+			updateCard("#symbol_", user.getNextCard(), i);
+			
+			GridPane pane = (GridPane) primaryStage.getScene().lookup("#user_" + i + "_layout");
+			
+			System.out.println("#user_" + i + "_layout");
+			
+			pane.setVisible(true);
+			
+			++i;
+		}
+
+		updateCard("#main_", mainCard, 0);
+		
+		currentPlayer = 0;
+		
+		while (endGame()) {
+			
+			nextRound(Properties.getNumberOfPlayers());
+		}
+	}
+	
 	private boolean endGame() {
 		for (User user : users) {
 			if (user.getCards().size() == 0) {
@@ -119,37 +114,37 @@ public class OcrGUI extends Application {
 		
 		
 		int userIndex = Character.getNumericValue(id.charAt(0));
-		
-		System.out.println(userIndex + " " + users.size());
-		
+
 		User user = users.get(userIndex);
 		
 		int index = Character.getNumericValue(id.charAt(1));
 		
 		
+		System.out.println(btn.getText());
+		System.out.println(controller.getMainCard().toString());
 		
-		if (controller.getMainCard().match(index)) {
+		if (controller.getMainCard().match(Integer.parseInt(btn.getText()))) {
 			Card card = user.dropCard();
 			controller.setMid(card);
 			System.out.println("MATCH");
 			
-			for (int i = 0; i < Constants.NUMBER_OF_CARDS; ++i) {
-				Button button = (Button) stage.getScene().lookup("#main_" + 0 + i);
-				button.setText(String.valueOf(card.getSymbolByIndex(i)));
-			}
-			
-			for (int i = 0; i < Constants.NUMBER_OF_CARDS; ++i) {
-				Button button = (Button) stage.getScene().lookup("#symbol_" + userIndex + i);
-				button.setText(String.valueOf(user.getNextCard().getSymbolByIndex(i)));
-			}
+			updateCard("#symbol_", user.getNextCard(), userIndex);
+			updateCard("#main_", card, 0);
 			
 		} else {
 			
-			System.out.println(controller.getMainCard() + " " + index);
+			//System.out.println(controller.getMainCard() + " " + index);
 		}
 		
 	}
 	
+	private void updateCard(String symbol, Card card, int userIndex) {
+		for (int i = 0; i < Constants.NUMBER_OF_CARDS; ++i) {
+			Button button = (Button) stage.getScene().lookup(symbol + userIndex + i);
+			button.setVisible(true);
+			button.setText(String.valueOf(card.getSymbolByIndex(i)));
+		}
+	}
 
 	public void nextRound(int j) {
 		currentPlayer = currentPlayer + 1 % Properties.getNumberOfPlayers();

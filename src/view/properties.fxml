@@ -12,12 +12,12 @@
 <?import javafx.scene.layout.Pane?>
 
 <Pane fx:controller="view.Properties" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <CheckBox layoutX="120.0" layoutY="85.0" mnemonicParsing="false" />
-      <CheckBox layoutX="120.0" layoutY="121.0" mnemonicParsing="false" />
-      <TextField layoutX="151.0" layoutY="81.0" />
-      <TextField layoutX="151.0" layoutY="117.0" />
-      <TextField layoutX="151.0" layoutY="31.0" />
+    <children>
+      <CheckBox fx:id="check1" layoutX="120.0" layoutY="85.0" mnemonicParsing="false" onAction="#enablePlayer1" />
+      <CheckBox fx:id="check2" layoutX="120.0" layoutY="121.0" mnemonicParsing="false" onAction="#enablePlayer2" />
+      <TextField fx:id="userName1" layoutX="151.0" layoutY="81.0" promptText="Player 2" />
+      <TextField fx:id="userName2" layoutX="151.0" layoutY="117.0" promptText="Player 3" />
+      <TextField fx:id="userName0" layoutX="151.0" layoutY="31.0" />
       <Label layoutX="58.0" layoutY="35.0" text="UserName" />
       <Button layoutX="259.0" layoutY="188.0" mnemonicParsing="false" onAction="#save" text="Save" />
       <Button layoutX="94.0" layoutY="188.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
