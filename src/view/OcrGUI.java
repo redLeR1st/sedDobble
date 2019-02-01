@@ -33,7 +33,7 @@ public class OcrGUI extends Application {
 	private static Stage stage;
 	private Desktop desktop = Desktop.getDesktop();
 	
-	private List<User> users;
+	private static List<User> users;
 	private int currentPlayer = 0;
 	
 	@Override
@@ -116,16 +116,36 @@ public class OcrGUI extends Application {
 		Button btn = (Button) event.getSource();
 		String id = btn.getId().replace("symbol_", "");
 		
-		System.out.println(id.charAt(0) + users.size());
 		
-		User user = users.get(id.charAt(0));
 		
-		if (controller.getMainCard().match(Character.getNumericValue(id.charAt(1)))) {
+		int userIndex = Character.getNumericValue(id.charAt(0));
+		
+		System.out.println(userIndex + " " + users.size());
+		
+		User user = users.get(userIndex);
+		
+		int index = Character.getNumericValue(id.charAt(1));
+		
+		
+		
+		if (controller.getMainCard().match(index)) {
 			Card card = user.dropCard();
 			controller.setMid(card);
+			System.out.println("MATCH");
+			
+			for (int i = 0; i < Constants.NUMBER_OF_CARDS; ++i) {
+				Button button = (Button) stage.getScene().lookup("#main_" + 0 + i);
+				button.setText(String.valueOf(card.getSymbolByIndex(i)));
+			}
+			
+			for (int i = 0; i < Constants.NUMBER_OF_CARDS; ++i) {
+				Button button = (Button) stage.getScene().lookup("#symbol_" + userIndex + i);
+				button.setText(String.valueOf(user.getNextCard().getSymbolByIndex(i)));
+			}
+			
 		} else {
 			
-			//user.
+			System.out.println(controller.getMainCard() + " " + index);
 		}
 		
 	}

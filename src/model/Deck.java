@@ -71,12 +71,14 @@ raw = new int[]
 //57LAP VAN
 		
 		cards = new ArrayList<Card>();
-		for (int i = 0; i < 57*8; i++) {
+		
+		for (int i = 0; i < 57*8; i+=8) {
 			Card c = new Card();
-			for(int j = 0; j < 8; j++) {
+			for (int j = i; j < i+8; ++j) {
 				c.addSymb(raw[j]);
 			}
 			cards.add(c);
+
 		}
 	}
 	
