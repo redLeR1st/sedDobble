@@ -33,4 +33,7 @@ public class User {
 		return ret;
 	}
 	
+	public List<Card> getCards() {
+		return hand;
+	}
 }

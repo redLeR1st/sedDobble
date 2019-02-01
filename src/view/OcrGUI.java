@@ -29,44 +29,8 @@ import model.User;
 
 public class OcrGUI extends Application {
 	
-	
-	@FXML
-	private ColorPicker characterColor;
-	
-	@FXML
-	private ColorPicker lineColor;
-	
-	@FXML
-	private ColorPicker paragraphColor;
-	
-	@FXML
-	private Button loadFile;
-	
-	@FXML
-	private Button fullScreen;
-	
-	@FXML
-	private ImageView imageView;
-	
-	@FXML
-	private ImageView originalImage;
-	
-	@FXML
-	private Slider treshold;
-	
-	@FXML
-	private CheckBox rotateCheckBox;
-	
-	
-	
-	private Label label;
-	private FileChooser fileChooser;
 	private final OcrController controller = application.Main.controller;
-	private static File imageFile;
-	private static Image processedImage;
 	private static Stage stage;
-	private String mode = "letters";
-	private Color color;
 	private Desktop desktop = Desktop.getDesktop();
 	
 private List<User> users;
@@ -98,6 +62,8 @@ private List<User> users;
 				for (int j = 0; j < Constants.NUMBER_OF_CARDS; ++j) {
 					Button button = (Button) primaryStage.getScene().lookup("#symbol_" + i + j);
 					button.setText(String.valueOf(user.getNextCard().getSymbolByIndex(j)));
+					
+					System.out.println(button);
 				}
 				
 				GridPane pane = (GridPane) primaryStage.getScene().lookup("#user_" + i + "_layout");
@@ -105,6 +71,12 @@ private List<User> users;
 				
 				++i;
 			}
+			for (int j = 0; j < Constants.NUMBER_OF_CARDS; ++j) {
+				Button button = (Button) primaryStage.getScene().lookup("#main_" + 0 + j);
+				
+				button.setText(String.valueOf(mainCard.getSymbolByIndex(j)));
+			}
+			
 			currentPlayer = 0;
 			
 			while (endGame()) {
@@ -146,8 +118,12 @@ private List<User> users;
     }
     
 	private boolean endGame() {
+		for (User user : users) {
+			if (user.getCards().size() == 0) {
+				return true;
+			} 
+		}
 		return false;
-		
 	}
 	
 	public void match(ActionEvent event) {

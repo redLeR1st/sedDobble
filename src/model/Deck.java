@@ -72,10 +72,11 @@ raw = new int[]
 		
 		cards = new ArrayList<Card>();
 		for (int i = 0; i < 57*8; i++) {
+			Card c = new Card();
 			for(int j = 0; j < 8; j++) {
-				Card c = new Card();
 				c.addSymb(raw[i]);
 			}
+			cards.add(c);
 		}
 	}
 	

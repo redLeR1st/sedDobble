@@ -48,7 +48,7 @@ public class OcrController {
 	//jatekosok listáját adja vissza 
 	public List<User> startGame(int n) {
 		midHand = new ArrayList<Card>();
-		Card toMid = d.deal(0).get(0);
+		Card toMid = d.deal(1).get(0);
 		setMid(toMid);
 		List<User> users = new ArrayList<User>();
 		
