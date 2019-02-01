@@ -74,7 +74,7 @@ raw = new int[]
 		for (int i = 0; i < 57*8; i++) {
 			Card c = new Card();
 			for(int j = 0; j < 8; j++) {
-				c.addSymb(raw[i]);
+				c.addSymb(raw[j]);
 			}
 			cards.add(c);
 		}

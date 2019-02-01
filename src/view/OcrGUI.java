@@ -33,7 +33,7 @@ public class OcrGUI extends Application {
 	private static Stage stage;
 	private Desktop desktop = Desktop.getDesktop();
 	
-private List<User> users;
+	private List<User> users;
 	private int currentPlayer = 0;
 	
 	@Override
@@ -59,8 +59,7 @@ private List<User> users;
 				
 				
 				label.setText(user.getUserName());
-				
-				label = (Label) primaryStage.getScene().lookup("#user" + i);
+				label.setVisible(true);
 				
 				for (int j = 0; j < Constants.NUMBER_OF_CARDS; ++j) {
 					
@@ -117,6 +116,7 @@ private List<User> users;
 		Button btn = (Button) event.getSource();
 		String id = btn.getId().replace("symbol_", "");
 		
+		System.out.println(id.charAt(0) + users.size());
 		
 		User user = users.get(id.charAt(0));
 		
