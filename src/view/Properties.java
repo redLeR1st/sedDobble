@@ -12,7 +12,7 @@ import model.Constants;
 public class Properties extends Application {
 
 
-	private static int numberOfPlayers = Constants.NUMBER_OF_CARDS;
+	private static int numberOfPlayers = Constants.NUMBER_OF_PLAYERS;
 	private static String gameMode = Constants.DEFAULT_GAME_MODE;
 	
 	private static Stage stage;

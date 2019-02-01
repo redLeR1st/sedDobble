@@ -55,7 +55,9 @@ private List<User> users;
 			int i = 0;
 			for (User user : users) {
 				
-				Label label = (Label) primaryStage.getScene().lookup("#user" + i);
+				Label label = (Label) primaryStage.getScene().lookup("#user_" + i);
+				
+				
 				label.setText(user.getUserName());
 				
 				label = (Label) primaryStage.getScene().lookup("#user" + i);
@@ -64,12 +66,20 @@ private List<User> users;
 					
 					
 					Button button = (Button) primaryStage.getScene().lookup("#symbol_" + i + j);
+					
+					if (button == null) {
+						System.out.println("#symbol_" + i + j);
+					}
+					
 					button.setText(String.valueOf(user.getNextCard().getSymbolByIndex(j)));
 					button.setVisible(true);
 					
 				}
 				
 				GridPane pane = (GridPane) primaryStage.getScene().lookup("#user_" + i + "_layout");
+				
+				System.out.println("#user_" + i + "_layout");
+				
 				pane.setVisible(true);
 				
 				++i;
@@ -86,33 +96,7 @@ private List<User> users;
 				
 				nextRound(Properties.getNumberOfPlayers());
 			}
-			
-	        /*fileChooser = new FileChooser();
-	        
-	        characterColor = (ColorPicker) primaryStage.getScene().lookup("#characterColor");
-	        characterColor.setValue(Color.GREEN);
-	        loadFile = (Button) primaryStage.getScene().lookup("#loadFile");
-	        
-	        loadFile.setOnAction(
-				new EventHandler<ActionEvent>() {
-				    public void handle(final ActionEvent e) {
-				    	configureFileChooser(fileChooser);
-				        imageFile = fileChooser.showOpenDialog(primaryStage);
-				        label = (Label) primaryStage.getScene().lookup("#fileLabel");
-				        originalImage = (ImageView) primaryStage.getScene().lookup("#originalImage");
-				        
-				        if (imageFile != null) {
-				        	label.setText(imageFile.getName());
-				        	originalImage.setImage(new Image(imageFile.toURI().toString()));
-				        } else {
-				        	label.setText("Sikertelen kép betöltés!");
-				        }
-				    }
-				});
-	        
-	        treshold = (Slider) primaryStage.getScene().lookup("#treshold");
-	        treshold.setValue(50);*/
-	        
+
 	        primaryStage.show();
 	        
 		} else {
