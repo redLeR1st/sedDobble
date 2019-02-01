@@ -63,7 +63,7 @@ private List<User> users;
 					Button button = (Button) primaryStage.getScene().lookup("#symbol_" + i + j);
 					button.setText(String.valueOf(user.getNextCard().getSymbolByIndex(j)));
 					
-					System.out.println(button);
+					System.out.println("asd");
 				}
 				
 				GridPane pane = (GridPane) primaryStage.getScene().lookup("#user_" + i + "_layout");
