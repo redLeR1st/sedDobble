@@ -115,14 +115,14 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="symbol_10" mnemonicParsing="false" onAction="#match" text="Button" />
-                  <Button fx:id="symbol_11" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" />
-                  <Button fx:id="symbol_12" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="1" />
-                  <Button fx:id="symbol_13" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="symbol_14" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="2" />
-                  <Button fx:id="symbol_15" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="symbol_16" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="3" />
-                  <Button fx:id="symbol_17" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button visible = "false" fx:id="symbol_10" mnemonicParsing="false" onAction="#match" text="Button" />
+                  <Button visible = "false" fx:id="symbol_11" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" />
+                  <Button visible = "false" fx:id="symbol_12" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="1" />
+                  <Button visible = "false" fx:id="symbol_13" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button visible = "false" fx:id="symbol_14" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="2" />
+                  <Button visible = "false" fx:id="symbol_15" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button visible = "false" fx:id="symbol_16" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="3" />
+                  <Button visible = "false" fx:id="symbol_17" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <GridPane layoutX="467.0">
@@ -137,14 +137,14 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="symbol_20" mnemonicParsing="false" onAction="#match" text="Button" />
-                  <Button fx:id="symbol_21" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" />
-                  <Button fx:id="symbol_22" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="1" />
-                  <Button fx:id="symbol_23" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="symbol_24" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="2" />
-                  <Button fx:id="symbol_25" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="symbol_26" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="3" />
-                  <Button fx:id="symbol_27" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button visible = "false" fx:id="symbol_20" mnemonicParsing="false" onAction="#match" text="Button" />
+                  <Button visible = "false" fx:id="symbol_21" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" />
+                  <Button visible = "false" fx:id="symbol_22" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="1" />
+                  <Button visible = "false" fx:id="symbol_23" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button visible = "false" fx:id="symbol_24" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="2" />
+                  <Button visible = "false" fx:id="symbol_25" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button visible = "false" fx:id="symbol_26" mnemonicParsing="false" onAction="#match" text="Button" GridPane.rowIndex="3" />
+                  <Button visible = "false" fx:id="symbol_27" mnemonicParsing="false" onAction="#match" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <Label fx:id="user_1" layoutX="192.0" layoutY="14.0" text="Label" />
