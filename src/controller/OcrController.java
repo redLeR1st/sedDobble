@@ -12,7 +12,8 @@ public class OcrController {
 	private OcrGUI gui;
 	private Deck d = new Deck();
 	
-
+	private long startTime;
+	
 	private List<Card> midHand;
 	
 	
@@ -44,6 +45,26 @@ public class OcrController {
 		return null;
 	}
 
+	String endTime() {
+		long end = System.nanoTime();
+		
+		long elapsed = end-startTime;
+		
+		double seconds = (double)elapsed / 1000000000.0;
+		
+		double min = seconds/60;
+		double sec = seconds%60;
+		Double m = min;
+		Double s = sec;
+
+		String ret = "";
+		
+		ret += Integer.toString(m.intValue()) + " min ";
+		ret += Integer.toString(s.intValue()) + " sec\n";
+		
+		return ret;
+	}
+	
 	
 	//jatekosok listáját adja vissza 
 	public List<User> startGame(int n) {
@@ -57,6 +78,9 @@ public class OcrController {
 			user.setHand(d.deal(10));
 			users.add(user);
 		}	
+		
+		startTime = System.nanoTime();
+		
 		return users;
 	}
 	
