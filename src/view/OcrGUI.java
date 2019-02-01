@@ -63,7 +63,7 @@ public class OcrGUI extends Application {
 		System.out.println("START GAME");
 		System.out.println("Number of players: " + Properties.getNumberOfPlayers());
 		
-		users = controller.startGame(1);
+		users = controller.startGame(Properties.getNumberOfPlayers());
 		Card mainCard = controller.getMainCard();
 		
 		int i = 0;
@@ -128,7 +128,12 @@ public class OcrGUI extends Application {
 			controller.setMid(card);
 			System.out.println("MATCH");
 			
-			updateCard("#symbol_", user.getNextCard(), userIndex);
+			Card nextCard = user.getNextCard();
+			
+			if (nextCard != null) {
+				updateCard("#symbol_", nextCard, userIndex);
+			}
+			
 			updateCard("#main_", card, 0);
 			
 		} else {

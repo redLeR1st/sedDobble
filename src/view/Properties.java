@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.OcrController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,7 @@ public class Properties extends Application {
 
 	private static int numberOfPlayers = Constants.NUMBER_OF_PLAYERS;
 	private static String gameMode = Constants.DEFAULT_GAME_MODE;
-	
+	private final OcrController controller = application.Main.controller;
 	private static Stage stage;
 	
 	private static List<String> userNames;
@@ -61,7 +62,6 @@ public class Properties extends Application {
 			if (textField != null) {
 				userNames.set(i, textField.getText());
 			}
-			
 		}
 		
 		stage.close();
@@ -115,4 +115,9 @@ public class Properties extends Application {
 	public static List<String> getUserNames() {
 		return userNames;
 	}
+	
+	public static String getUserName(int i) {
+		return userNames.get(i);
+	}
+	
 }
