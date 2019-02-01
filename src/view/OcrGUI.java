@@ -4,19 +4,15 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
+import com.sun.tools.javac.util.List;
 
 import controller.OcrController;
 import javafx.application.Application;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
@@ -24,12 +20,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Card;
+import model.Constants;
 
 public class OcrGUI extends Application {
-
+	
+	
 	@FXML
 	private ColorPicker characterColor;
 	
@@ -57,6 +57,8 @@ public class OcrGUI extends Application {
 	@FXML
 	private CheckBox rotateCheckBox;
 	
+	
+	
 	private Label label;
 	private FileChooser fileChooser;
 	private final OcrController controller = application.Main.controller;
@@ -67,10 +69,12 @@ public class OcrGUI extends Application {
 	private Color color;
 	private Desktop desktop = Desktop.getDesktop();
 	
+private List<User> users;
+	private int currentPlayer = 0;
 	
 	@Override
     public void start(final Stage primaryStage) {
-		primaryStage.setTitle("DUMB OCR");
+		primaryStage.setTitle("SED DOBBLE");
 		stage = primaryStage;
         Parent root = null;
 		try {
@@ -81,7 +85,34 @@ public class OcrGUI extends Application {
 		if(root != null) {
 			primaryStage.setScene(new Scene(root));
 	        
-	        fileChooser = new FileChooser();
+			users = controller.startGame(Properties.getNumberOfPlayers());
+			Card mainCard = controller.getMainCard();
+			
+			int i = 0;
+			for (User user : users) {
+				Label label = (Label) primaryStage.getScene().lookup("#user" + i);
+				label.setText(user.getUserName());
+				
+				label = (Label) primaryStage.getScene().lookup("#user" + i);
+				
+				for (int j = 0; j < Constants.NUMBER_OF_CARDS; ++j) {
+					Button button = (Button) primaryStage.getScene().lookup("#symbol_" + i + j);
+					button.setText(user.getNextCard().getSysmbolByIndex(j));
+				}
+				
+				GridPane pane = (GridPane) primaryStage.getScene().lookup("#user_" + i + "_layout");
+				pane.setVisible(true);
+				
+				++i;
+			}
+			currentPlayer = 0;
+			
+			while (controller.endGame()) {
+				
+				nextRound(Properties.getNumberOfPlayers());
+			}
+			
+	        /*fileChooser = new FileChooser();
 	        
 	        characterColor = (ColorPicker) primaryStage.getScene().lookup("#characterColor");
 	        characterColor.setValue(Color.GREEN);
@@ -105,7 +136,7 @@ public class OcrGUI extends Application {
 				});
 	        
 	        treshold = (Slider) primaryStage.getScene().lookup("#treshold");
-	        treshold.setValue(50);
+	        treshold.setValue(50);*/
 	        
 	        primaryStage.show();
 	        
@@ -114,11 +145,43 @@ public class OcrGUI extends Application {
 		}
     }
     
+	
+	public void match(ActionEvent event) {
+		Button btn = (Button) event.getSource();
+		String id = btn.getId().replace("symbol_", "");
+		
+		
+		User user = users[id.charAt(0)];
+		
+		if (controller.getMainCard().match(Character.getNumericValue(id.charAt(1)))) {
+			Card card = user.dropCard();
+			controller.setMid(card);
+		} else {
+			
+			
+		}
+		
+	}
+	
+
+	public void nextRound() {
+		currentPlayer = currentPlayer + 1 % Properties.getNumberOfPlayers();
+		
+		for (int i = 0; i < Properties.getNumberOfPlayers(); ++i) {
+			GridPane pane = (GridPane) stage.getScene().lookup("#user_" + i + "_layout");
+			pane.setDisable(true);
+		}
+		GridPane pane = (GridPane) stage.getScene().lookup("#user_" + currentPlayer + "_layout");
+		pane.setDisable(false);
+	}
+	
+
+	
     public void startGUI() {
     	launch();
     }
     
-    
+    /*
     private static void configureFileChooser(FileChooser fileChooser){                           
     	fileChooser.setTitle("Kép betöltése");
         fileChooser.setInitialDirectory(
@@ -193,11 +256,11 @@ public class OcrGUI extends Application {
             }
     	}
     }
-    
+    */
     public void quitMenuAction() {
         System.exit(0);
     }
-    
+    /*
     public void aboutMenuAction() {
     	Alert alert = new Alert(AlertType.INFORMATION);
     	alert.setTitle("Információ");
@@ -236,12 +299,12 @@ public class OcrGUI extends Application {
     public void enableTresholdiing() {
     	treshold.setDisable(!treshold.isDisable());
     }
-
+*/
     public void showProperties() {
     	Properties dialog = new Properties();
     	dialog.start(stage);
     }
-    
+    /*
     public void constructAlert(String errorRoot) {
     	Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Hiba");
@@ -296,5 +359,5 @@ public class OcrGUI extends Application {
     
 	public String getPath() {
 		return Properties.getPath();
-	}
+	}*/
 }

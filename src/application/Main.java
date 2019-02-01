@@ -13,7 +13,5 @@ public class Main {
     	controller = new OcrController();
     	
     	controller.startDesktop();
-    	
-
     }
 }

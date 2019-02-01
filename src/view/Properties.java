@@ -13,10 +13,10 @@ import javafx.stage.Stage;
 
 public class Properties extends Application {
 
-	@FXML
-	private TextField matlabPath;
+
+	private static int numberOfPlayers;
+	private static String gameMode;
 	
-	private static String path = "";
 	private static Stage stage;
 	
 	@Override
@@ -32,48 +32,31 @@ public class Properties extends Application {
 		if (root != null) {
 			stage.setScene(new Scene(root));
 			
-			if (! "".equals(path)) {
-				matlabPath = (TextField) stage.getScene().lookup("#matlabPath");
-				matlabPath.setText(path);
-				matlabPath.setDisable(false);
-				
-				CheckBox matlabPathCheckBox = (CheckBox) stage.getScene().lookup("#matlabPathCheckBox");
-				matlabPathCheckBox.setSelected(true);
-			}
-			
 			stage.show();
 	        
 		} else {
 			System.out.println("Failed to load properties.fxml!");
 		}
     }
-    
-	
-	public void enableMatlabPath() {
-		matlabPath.setDisable(!matlabPath.isDisable());
-	}
-	
-	public void savePath() {
-		if (!matlabPath.isDisable()) {
-			path = matlabPath.getText();
-		} else {
-			path = "";
-		}
+
+	public void save() {
+		
 		stage.close();
 	}
 	
-	public void cancelPath() {
-		path = "";
+	public void cancel() {
+		gameMode = "";
 		stage.close();
 	}
 
 
-	public static String getPath() {
-		return path;
+	public static String getMode() {
+		return gameMode;
+	}
+	
+	public static int getNumberOfPlayers() {
+		return numberOfPlayers;
 	}
 
 
-	public static void setPath(String path) {
-		Properties.path = path;
-	}
 }
