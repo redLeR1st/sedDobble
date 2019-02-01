@@ -38,4 +38,14 @@ public class Card {
 		}
 		return true;
 	}
+	
+	public String toString() {
+		String ret = "";
+		for (int i = 0; i < 8; i++) {
+			ret += symbols.get(i) + " ";
+		}
+		ret += "\n";
+		return ret;
+	}
+	
 }
