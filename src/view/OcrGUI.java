@@ -62,9 +62,7 @@ public class OcrGUI extends Application {
 		
 		int i = 0;
 		for (User user : users) {
-			
-			System.out.println(user.getUserName());
-			
+
 			if (Properties.refresh) {
 				user.setName(Properties.getUserName(i));
 			}
@@ -80,8 +78,7 @@ public class OcrGUI extends Application {
 			
 			GridPane pane = (GridPane) primaryStage.getScene().lookup("#user_" + i + "_layout");
 			
-			System.out.println("#user_" + i + "_layout");
-			
+
 			pane.setVisible(true);
 			
 			++i;
@@ -114,10 +111,7 @@ public class OcrGUI extends Application {
 		
 		int index = Character.getNumericValue(id.charAt(1));
 		
-		
-		System.out.println(btn.getText());
-		System.out.println(controller.getMainCard().toString());
-		
+
 		if (controller.getMainCard().match(Integer.parseInt(btn.getText()))) {
 			Card card = user.dropCard();
 			
