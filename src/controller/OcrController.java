@@ -34,16 +34,14 @@ public class OcrController {
 		gui.startGUI();
 	}
 
-	boolean endGame() {
-	}
-	
+
 	public void setMid(Card setIt) {
 		midHand.add(setIt);
 	}
 	
 	User getUserByIndex(int i) {
 		
-		
+		return null;
 	}
 
 	
@@ -59,7 +57,7 @@ public class OcrController {
 			user.setHand(d.deal(10));
 			users.add(user);
 		}	
-		
+		return users;
 	}
 	
 }

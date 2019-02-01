@@ -5,7 +5,9 @@ import java.util.List;
 public class Deck {
 	int n = 8;
 
+
 int[] raw;
+/*
 raw = new int[] 
 {0, 1, 2, 3, 4, 5, 6, 49,
 ,7, 8, 9, 10, 11, 12, 13, 49,
@@ -65,13 +67,13 @@ raw = new int[]
 ,36, 6, 42, 12, 56, 18, 24, 30,
 ,49, 50, 51, 52, 53, 54, 55, 56}
 //57LAP VAN
-
+*/
 	List<Card> cards;
 	
-	Deck() {
-		cards = new ArrayList<Card>
-		for (int i = 0; i < 57*8, i++) {
-			for(int j = 0; j < 8, j++) {
+	public Deck() {
+		cards = new ArrayList<Card>();
+		for (int i = 0; i < 57*8; i++) {
+			for(int j = 0; j < 8; j++) {
 				Card c = new Card();
 				c.addSymb(raw[i]);
 			}
@@ -80,7 +82,7 @@ raw = new int[]
 	
 	public List<Card> deal(int num) {
 		List<Card> dealtIt = new ArrayList<Card>();
-		
+		/*
 		for (){
 			Random rand = new Random();
 			int n = rand.nextInt(cards.size()) + 0;
@@ -89,7 +91,7 @@ raw = new int[]
 			cards.remove(n)
 			
 			dealtIt.add(ret);
-		}
+		}*/
 		return dealtIt;
 	}
 	
