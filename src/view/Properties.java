@@ -3,19 +3,17 @@ package view;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Constants;
 
 public class Properties extends Application {
 
 
-	private static int numberOfPlayers;
-	private static String gameMode;
+	private static int numberOfPlayers = Constants.NUMBER_OF_CARDS;
+	private static String gameMode = Constants.DEFAULT_GAME_MODE;
 	
 	private static Stage stage;
 	

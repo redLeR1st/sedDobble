@@ -54,16 +54,19 @@ private List<User> users;
 			
 			int i = 0;
 			for (User user : users) {
+				
 				Label label = (Label) primaryStage.getScene().lookup("#user" + i);
 				label.setText(user.getUserName());
 				
 				label = (Label) primaryStage.getScene().lookup("#user" + i);
 				
 				for (int j = 0; j < Constants.NUMBER_OF_CARDS; ++j) {
+					
+					
 					Button button = (Button) primaryStage.getScene().lookup("#symbol_" + i + j);
 					button.setText(String.valueOf(user.getNextCard().getSymbolByIndex(j)));
+					button.setVisible(true);
 					
-					System.out.println("asd");
 				}
 				
 				GridPane pane = (GridPane) primaryStage.getScene().lookup("#user_" + i + "_layout");
@@ -138,7 +141,7 @@ private List<User> users;
 			controller.setMid(card);
 		} else {
 			
-			
+			//user.
 		}
 		
 	}
@@ -161,183 +164,12 @@ private List<User> users;
     	launch();
     }
     
-    /*
-    private static void configureFileChooser(FileChooser fileChooser){                           
-    	fileChooser.setTitle("Kép betöltése");
-        fileChooser.setInitialDirectory(
-            new File(System.getProperty("user.home"))
-        );
-        fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-            new FileChooser.ExtensionFilter("PNG", "*.png")
-        );
-    }
-    
-    public void run() {
-    	if (imageFile == null) {
-    		constructAlert("futtatáshoz");
-    	} else {
-    		
-    		if (color == null) {
-    			color = characterColor.getValue();
-    		}
-    		
-    		if (!lineColor.isDisabled()) {
-    			color = lineColor.getValue();
-    		} else if (!characterColor.isDisabled()) {
-    			color = characterColor.getValue();
-    		} else {
-    			color = paragraphColor.getValue();
-    		}
-    		
-    		
-    		if (processedImage == null) {
-    			constructWarning("futtatás");
-    		} else {
-	        	fullScreen.setOpacity(1);
-	        	fullScreen.setDisable(false);
-	        	fullScreen.setGraphic(new ImageView(new Image(new File("src/view/img/full-image.png").toURI().toString())));
-	        	
-	        	imageView.setImage(processedImage);
-    		}
-    		
-    	}
-    }
-    
-    @SuppressWarnings("deprecation")
-	public void loadFullScreen() {
-    	try {
-    		if (desktop != null && processedImage != null) {
-    			
-    		} else {
-    			throw new IOException("");
-    		}
-        } catch (IOException ex) {
-        	System.out.println("Failed to load image into desktop!");
-        }
-    }
-    
-    
-    public void saveMenuAction() {
-    	Image processedImage = imageView.getImage();
-    	
-    	if (processedImage == null) {
-    		constructAlert("mentéshez");
-    	} else {
-    		FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Feldolgozott kép mentése...");
-            File file = fileChooser.showSaveDialog(stage);
-            if (file != null) {
-                try {
-                	ImageIO.write(SwingFXUtils.fromFXImage(processedImage, null), "jpg", file);         
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-    	}
-    }
-    */
     public void quitMenuAction() {
         System.exit(0);
     }
-    /*
-    public void aboutMenuAction() {
-    	Alert alert = new Alert(AlertType.INFORMATION);
-    	alert.setTitle("Információ");
-    	alert.setHeaderText("Az alkalmazást készítették: Barta Bence, Csuvik Viktor, Mészáros Jenő");
-    	alert.setContentText("Képfeldolgozás haladóknak");
-    	
-    }
-    
-    public void enableCharacter() {
-    	characterColor.setValue(Color.GREEN);
-    	characterColor.setDisable(false);
-    	lineColor.setDisable(true);
-    	paragraphColor.setDisable(true);
-    	mode = "letters";
-    	color = characterColor.getValue();
-    }
-    
-    public void enableLine() {
-    	lineColor.setValue(Color.RED);
-    	lineColor.setDisable(false);
-    	paragraphColor.setDisable(true);
-    	characterColor.setDisable(true);
-    	mode = "words";
-    	color = lineColor.getValue();
-    }
-    
-    public void enableParagraph() {
-    	paragraphColor.setValue(Color.BLUE);
-    	paragraphColor.setDisable(false);
-    	lineColor.setDisable(true);
-    	characterColor.setDisable(true);
-    	mode = "lines";
-    	color = paragraphColor.getValue();
-    }
-    
-    public void enableTresholdiing() {
-    	treshold.setDisable(!treshold.isDisable());
-    }
-*/
+
     public void showProperties() {
     	Properties dialog = new Properties();
     	dialog.start(stage);
     }
-    /*
-    public void constructAlert(String errorRoot) {
-    	Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Hiba");
-		alert.setHeaderText("A " + errorRoot + " be kell tölteni egy képet!");
-		alert.setContentText("A \"Kép betöltése\" gombra kattintva és egy képet kiválasztva lehet képet betölteni.");
-
-    }
-    
-   public void constructWarning(String errorRoot) {
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle("Hiba");
-		alert.setHeaderText("Nem sikerült a " + errorRoot + ".");
-		alert.setContentText("Próbálja újra.");
-
-   }
-    
-	public ColorPicker getCharacterColor() {
-		return characterColor;
-	}
-
-	public void setCharacterColor(ColorPicker characterColor) {
-		this.characterColor = characterColor;
-	}
-
-	public ColorPicker getLineColor() {
-		return lineColor;
-	}
-
-	public void setLineColor(ColorPicker lineColor) {
-		this.lineColor = lineColor;
-	}
-
-	public ColorPicker getParagraphColor() {
-		return paragraphColor;
-	}
-
-	public void setParagraphColor(ColorPicker paragraphColor) {
-		this.paragraphColor = paragraphColor;
-	}
-
-	public OcrController getController() {
-		return controller;
-	}
-
-	public static File getImageFile() {
-		return imageFile;
-	}
-
-	public static void setImageFile(File imageFile) {
-		OcrGUI.imageFile = imageFile;
-	}
-    
-	public String getPath() {
-		return Properties.getPath();
-	}*/
 }
