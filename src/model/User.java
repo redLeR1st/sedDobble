@@ -4,10 +4,17 @@ import java.util.List;
 
 public class User {
 	String name = "";
+	public int punushment = 0;
 	List<Card> hand;
 	
 	public String getUserName() {
 		return name;
+	}
+	
+	public void punish() {
+		this.punushment += 1;
+		System.out.println(this.name + "nevu jatekos buntetest kapott: " + this.punushment + " db buntetopontja van.");
+
 	}
 	
 	public void setName(String un) {
